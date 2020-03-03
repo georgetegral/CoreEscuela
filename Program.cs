@@ -23,7 +23,7 @@ namespace CoreEscuela
                 out int conteoCursos,
                 traeEvaluaciones:false
             );
-            
+            var dicTmp = engine.getDiccionarioObjetos();
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
