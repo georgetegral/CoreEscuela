@@ -43,7 +43,7 @@ namespace CoreEscuela
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
             return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             bool traeEvaluaciones = true,
             bool traeAlumnos = true, 
             bool traeAsignaturas = true,
@@ -52,7 +52,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             bool traeEvaluaciones = true,
             bool traeAlumnos = true, 
@@ -62,7 +62,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAlumnos,
             bool traeEvaluaciones = true,
@@ -73,7 +73,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out conteoAlumnos, out int dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAlumnos,
             out int conteoAsignaturas,
@@ -85,7 +85,7 @@ namespace CoreEscuela
         {
             return GetObjetosEscuela(out conteoEvaluaciones, out conteoAlumnos, out conteoAsignaturas, out int dummy);
         }
-        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoAlumnos,
             out int conteoAsignaturas,
@@ -119,7 +119,7 @@ namespace CoreEscuela
                     }
                 }
             }
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
         #region Métodos de carga
         private void CargarEvaluacionesAlAzar()
