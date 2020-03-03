@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 using static System.Console;
 
 namespace CoreEscuela
@@ -40,6 +41,17 @@ namespace CoreEscuela
                                from a2 in apellido2
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
             return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
+        }
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> dic)
+        {
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                foreach (var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+            }
         }
         public Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> getDiccionarioObjetos()
         {

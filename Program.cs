@@ -24,6 +24,7 @@ namespace CoreEscuela
                 traeEvaluaciones:false
             );
             var dicTmp = engine.getDiccionarioObjetos();
+            engine.ImprimirDiccionario(dicTmp);
         }
         private static void ImprimirCursosEscuela(Escuela escuela)
         {
