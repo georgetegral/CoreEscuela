@@ -7,7 +7,7 @@ namespace CoreEscuela.Entidades
     {
         public string UniqueID { get; private set; }
         public string Nombre { get; set; }
-        public List<Evaluaciones> Evaluaciones { get; set; }
+        public List<Evaluacion> Evaluaciones { get; set; } = new List<Evaluacion>();
         public Alumno() => UniqueID = Guid.NewGuid().ToString();
     }
 }
