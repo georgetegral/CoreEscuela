@@ -43,20 +43,27 @@ namespace CoreEscuela
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
             return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
         }
-        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoAlumnos,
+            out int conteoAsignaturas,
+            out int conteoCursos,
             bool traeEvaluaciones = true,
             bool traeAlumnos = true, 
             bool traeAsignaturas = true,
             bool traeCursos = true
         )
         {
-            int conteoEvaluaciones = 0;
+            conteoEvaluaciones = conteoAlumnos = conteoAsignaturas = 0;
             var listaObj = new List<ObjetoEscuelaBase>();
             listaObj.Add(Escuela);
             if(traeCursos)
                 listaObj.AddRange(Escuela.Cursos);
+            conteoCursos = Escuela.Cursos.Count;
             foreach (var curso in Escuela.Cursos)
             {
+                conteoAsignaturas += curso.Asignaturas.Count;
+                conteoAlumnos += curso.Alumnos.Count;
                 if(traeAsignaturas)
                     listaObj.AddRange(curso.Asignaturas);
                 if(traeAlumnos)
@@ -70,7 +77,7 @@ namespace CoreEscuela
                     }
                 }
             }
-            return (listaObj, conteoEvaluaciones);
+            return listaObj;
         }
         #region Métodos de carga
         private void CargarEvaluacionesAlAzar()
