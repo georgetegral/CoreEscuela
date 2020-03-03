@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
     public class Escuela
     {
+        public string UniqueID { get; private set; } = Guid.NewGuid().ToString();
         public string Nombre { get; set; }
         public int AñoDeCreacion { get; set; }
         public string Pais { get; set; }
