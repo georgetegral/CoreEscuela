@@ -18,36 +18,30 @@ namespace CoreEscuela
         {
             Escuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria, ciudad: "Bogota", pais: "Colombia");
             CargarCursos();
-            foreach (var curso in Escuela.Cursos)
-            {
-                curso.Alumnos.AddRange(CargarAlumnos());
-            }
-
             CargarAsignaturas();
-            CargarEvaluaciones();
+            CargarEvaluacionesAlAzar();
         }
 
-        private void CargarEvaluaciones()
+        private void CargarEvaluacionesAlAzar()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void CargarAsignaturas()
         {
             foreach (var curso in Escuela.Cursos)
             {
-                List<Asignatura> listaAsignaturas = new List<Asignatura>()
+                curso.Asignaturas = new List<Asignatura>()
                 {
                     new Asignatura{ Nombre = "Matemáticas" },
                     new Asignatura{ Nombre = "Educación Física" },
                     new Asignatura{ Nombre = "Español" },
                     new Asignatura{ Nombre = "Ciencias Naturales" }
                 };
-                curso.Asignaturas.AddRange(listaAsignaturas);
             }
         }
 
-        private IEnumerable<Alumno> CargarAlumnos()
+        private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
         {
             string[] nombre1 = { "Jorge", "Gabriel", "Juan", "Federico", "Elsa", "Patricia", "Daniela" };
             string[] nombre2 = { "René", "Aldahir", "Lopez", "María", "Patricio" };
@@ -59,7 +53,7 @@ namespace CoreEscuela
                                from a1 in apellido1
                                from a2 in apellido2
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
-            return listaAlumnos;
+            return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
         }
 
         private void CargarCursos()
@@ -71,6 +65,13 @@ namespace CoreEscuela
                 new Curso() { Nombre = "401", Jornada = TiposJornada.Mañana },
                 new Curso() { Nombre = "501", Jornada = TiposJornada.Mañana }
             };
+            Random rnd = new Random();
+            foreach (var curso in Escuela.Cursos)
+            {
+                int cantRandom = rnd.Next(5,20);
+                curso.Alumnos = GenerarAlumnosAlAzar(cantRandom);
+            }
+
         }
     }
 }
