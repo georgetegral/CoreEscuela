@@ -35,7 +35,8 @@ namespace CoreEscuela
                         for (int i = 0; i < evaluaciones.Length; i++)
                         {
                             var evaluacion = new Evaluaciones(evaluaciones[i],alumno,asignatura,ObtenerNotaAleatoria());
-                            WriteLine("Asignatura: "+asignatura.Nombre+", Nombre: "+evaluacion.Nombre+", Alumno: "+alumno.Nombre+", Nota: "+evaluacion.Nota);
+                            //WriteLine("Asignatura: "+asignatura.Nombre+", Nombre: "+evaluacion.Nombre+", Alumno: "+alumno.Nombre+", Nota: "+evaluacion.Nota);
+                            alumno.Evaluaciones.Add(evaluacion);
                         }
                     }
                 }
