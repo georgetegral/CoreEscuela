@@ -24,11 +24,18 @@ namespace CoreEscuela
                 new Curso() { Nombre = "502", Jornada = TiposJornada.Tarde }
             };
             //Eliminar todos los elementos de la colección
-            otrColeccion.Clear();
-
+            //otrColeccion.Clear();
+            Curso tmp = new Curso{Nombre = "101-Vacacional", Jornada = TiposJornada.Noche};
             escuela.Cursos.AddRange(otrColeccion);
+            escuela.Cursos.Add(tmp);
             
             WriteLine(escuela);
+            ImprimirCursosEscuela(escuela);
+            //Obtener el identificador del curso
+            WriteLine("Curso.Hash"+ tmp.GetHashCode());
+            //Eliminar un curso en especifico
+            escuela.Cursos.Remove(tmp);
+            
             ImprimirCursosEscuela(escuela);
         }
 
