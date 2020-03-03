@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
+using static System.Console;
 
 namespace CoreEscuela
 {
@@ -24,7 +25,27 @@ namespace CoreEscuela
 
         private void CargarEvaluacionesAlAzar()
         {
-            
+            string[] evaluaciones = { "Tarea 1", "Tarea 2", "Tarea 3", "Proyecto parcial", "Examen parcial" };
+            foreach (var curso in Escuela.Cursos)
+            {
+                foreach (var asignatura in curso.Asignaturas)
+                {
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        for (int i = 0; i < evaluaciones.Length; i++)
+                        {
+                            var evaluacion = new Evaluaciones(evaluaciones[i],alumno,asignatura,ObtenerNotaAleatoria());
+                            WriteLine("Asignatura: "+asignatura.Nombre+", Nombre: "+evaluacion.Nombre+", Alumno: "+alumno.Nombre+", Nota: "+evaluacion.Nota);
+                        }
+                    }
+                }
+            }
+        }
+
+        private float ObtenerNotaAleatoria(){
+            Random rnd = new Random();
+            float nota = (float) (5* rnd.NextDouble());
+            return nota;
         }
 
         private void CargarAsignaturas()
