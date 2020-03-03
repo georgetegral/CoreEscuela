@@ -49,8 +49,8 @@ namespace CoreEscuela
                 List<Curso> c = new List<Curso>();
                 o = c.Cast<ObjetoEscuelaBase>();
             */
-            diccionario.Add("Escuela", new[] {Escuela});
-            diccionario.Add("Curso", Escuela.Cursos);
+            diccionario.Add(LlavesDiccionario.ESCUELA, new[] {Escuela});
+            diccionario.Add(LlavesDiccionario.CURSOS, Escuela.Cursos);
             return diccionario;
         }
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
