@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         public string Nombre { get; set; }
         public int AñoDeCreacion { get; set; }
