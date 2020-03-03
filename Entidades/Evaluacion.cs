@@ -14,5 +14,9 @@ namespace CoreEscuela.Entidades
             Asignatura = asignatura;
             Nota = nota;
         }
+        public override string ToString()
+        {
+            return $"{Nota}, {Alumno.Nombre}, {Asignatura.Nombre}";
+        }
     }
 }
