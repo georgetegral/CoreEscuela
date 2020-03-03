@@ -6,7 +6,7 @@ using static System.Console;
 
 namespace CoreEscuela
 {
-    public class EscuelaEngine
+    public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
 
