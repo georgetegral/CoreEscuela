@@ -41,16 +41,11 @@ namespace CoreEscuela
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
             return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
         }
-        public Dictionary<string,IEnumerable<ObjetoEscuelaBase>> getDiccionarioObjetos()
+        public Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> getDiccionarioObjetos()
         {
-            var diccionario = new Dictionary<string,IEnumerable<ObjetoEscuelaBase>>();
-            /* Ejemplo de lo que se puede hacer
-                IEnumerable<ObjetoEscuelaBase> o = new List<ObjetoEscuelaBase>();
-                List<Curso> c = new List<Curso>();
-                o = c.Cast<ObjetoEscuelaBase>();
-            */
-            diccionario.Add(LlavesDiccionario.ESCUELA, new[] {Escuela});
-            diccionario.Add(LlavesDiccionario.CURSOS, Escuela.Cursos);
+            var diccionario = new Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
+            diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos);
             return diccionario;
         }
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
