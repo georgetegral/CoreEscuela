@@ -7,20 +7,19 @@ namespace CoreEscuela.Entidades
         public string Pais {get;set;}
         public string Ciudad {get;set;}
         public TiposEscuela TipoEscuela{get;set;}
-        //Forma 1 de declararlo
-        /*
-        public Escuela(string nombre, int año)
+        public Escuela(string nombre, int año) => (Nombre, AñoDeCreacion) = (nombre, año);
+        //Inicializar los elementos significa que son opcionales
+        public Escuela(string nombre, int año, TiposEscuela tipo, string pais="", string ciudad="")
         {
             Nombre = nombre;
             AñoDeCreacion = año;
+            TipoEscuela = tipo;
+            Pais = pais;
+            Ciudad = ciudad;
         }
-        */
-        //Forma 2 de declararlo
-        public Escuela(string nombre, int año) => (Nombre, AñoDeCreacion) = (nombre, año);
-        
         public override string ToString()
         {
-            return $"Nombre: {Nombre}, Tipo: {TipoEscuela} \n Pais: {Pais}, Ciudad: {Ciudad}";
+            return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela}{System.Environment.NewLine}Pais: {Pais}, Ciudad: {Ciudad}";
         }
     }
 }
