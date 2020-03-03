@@ -25,7 +25,7 @@ namespace CoreEscuela
         }
         private float ObtenerNotaAleatoria(){
             Random rnd = new Random();
-            float nota = (float) (5* rnd.NextDouble());
+            float nota = (float) Math.Round((5* rnd.NextDouble()),2);
             return nota;
         }
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
@@ -42,14 +42,36 @@ namespace CoreEscuela
                                select new Alumno { Nombre = $"{n1} {n2} {a1} {a2}" };
             return listaAlumnos.OrderBy((alumno) => alumno.UniqueID).Take(cantidad).ToList();
         }
-        public void ImprimirDiccionario(Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> dic)
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> dic,
+            bool imprimirEval = false
+        )
         {
             foreach (var obj in dic)
             {
                 Printer.WriteTitle(obj.Key.ToString());
                 foreach (var val in obj.Value)
                 {
-                    Console.WriteLine(val);
+                    if (imprimirEval || !(val is Evaluacion))
+                    {
+                        switch (obj.Key)
+                        {
+                            case LlaveDiccionario.Escuela:
+                                Console.WriteLine("Escuela: "+val);
+                                break;
+                            case LlaveDiccionario.Alumno:
+                                Console.WriteLine("Alumno "+val);
+                                break;
+                            case LlaveDiccionario.Curso:
+                                Console.WriteLine("Curso: "+val);
+                                break;
+                            case LlaveDiccionario.Asignatura:
+                                Console.WriteLine("Asignatura: "+val);
+                                break;
+                            default:
+                                Console.WriteLine("Evaluacion: "+val);
+                                break;
+                        }
+                    }
                 }
             }
         }
