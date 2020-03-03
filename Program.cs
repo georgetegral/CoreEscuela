@@ -25,18 +25,25 @@ namespace CoreEscuela
             };
             //Eliminar todos los elementos de la colección
             //otrColeccion.Clear();
-            Curso tmp = new Curso{Nombre = "101-Vacacional", Jornada = TiposJornada.Noche};
+            //Curso tmp = new Curso{Nombre = "101-Vacacional", Jornada = TiposJornada.Noche};
             escuela.Cursos.AddRange(otrColeccion);
-            escuela.Cursos.Add(tmp);
-            
+            //escuela.Cursos.Add(tmp);
+
             WriteLine(escuela);
             ImprimirCursosEscuela(escuela);
             //Obtener el identificador del curso
-            WriteLine("Curso.Hash"+ tmp.GetHashCode());
+            //WriteLine("Curso.Hash"+ tmp.GetHashCode());
             //Eliminar un curso en especifico
-            escuela.Cursos.Remove(tmp);
-            
+            //escuela.Cursos.Remove(tmp);
+            //Esto es un delegado para asegurar que el predicado regresa un tipo de dato correcto
+            Predicate<Curso>miAlgoritmo = Predicado;
+            escuela.Cursos.RemoveAll(miAlgoritmo);
             ImprimirCursosEscuela(escuela);
+        }
+
+        private static bool Predicado(Curso obj)
+        {
+            return obj.Nombre == "301";
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
