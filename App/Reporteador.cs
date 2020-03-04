@@ -72,5 +72,14 @@ namespace CoreEscuela.App
             }
             return rta;
         }
+        public Dictionary<string, IEnumerable<AlumnoPromedio>> GetTopAluPorAsig(int max) {
+			var resp = new Dictionary<string, IEnumerable<AlumnoPromedio>>();
+			var dicPromAluPorAsig = GetPromAlumPorAsignatura();
+			foreach(var asig_aluProms in dicPromAluPorAsig) {
+				var topProms = asig_aluProms.Value.Cast<AlumnoPromedio>().OrderByDescending(e => e.promedio).Take(max);
+				resp.Add(asig_aluProms.Key, topProms);
+			}
+			return resp;
+		}
     }
 }
