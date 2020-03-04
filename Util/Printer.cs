@@ -16,6 +16,10 @@ namespace CoreEscuela.Util
             WriteLine($"| {titulo} |");
             DrawLine(tam);
         }
+        public static void PressEnter()
+        {
+            WriteLine("Presione ENTER para continuar");
+        }
         public static void Beep(int hz = 2000, int tiempo = 500, int cantidad = 1 )
         {
             while(cantidad-->0)

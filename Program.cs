@@ -26,19 +26,51 @@ namespace CoreEscuela
             var listaAsig = reporteador.GetListaAsignaturas();
             var listaEvalXAsig = reporteador.GetDicEvaluaXAsig();
             var listaPromXAsig = reporteador.GetPromAlumPorAsignatura();
-            /*
-            //Printer.Beep(10000, cantidad:2);
-            ImprimirCursosEscuela(engine.Escuela);
-            var listaObjetos = engine.GetObjetosEscuela(
-                out int conteoEvaluaciones,
-                out int conteoAlumnos,
-                out int conteoAsignaturas,
-                out int conteoCursos,
-                traeEvaluaciones:false
-            );
-            var dicTmp = engine.getDiccionarioObjetos();
-            engine.ImprimirDiccionario(dicTmp);
-            */
+            
+            Printer.WriteTitle("Captura de una evaluación por consola");
+
+            WriteLine("Ingrese el nombre de la evaluación");
+            Printer.PressEnter();
+            string nombre = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(nombre))
+            {
+                Printer.WriteTitle("El valor del nombre no puede ser vacio");
+                WriteLine("Saliendo del programa");
+            }
+            else
+            {
+                nombre = nombre.ToLower();
+                WriteLine("Nombre ingresado correctamente");
+            }
+
+            WriteLine("Ingrese la nota de la evaluación");
+            Printer.PressEnter();
+            string notaStr = Console.ReadLine();
+            float nota;
+
+            try
+            {
+                nota = float.Parse(notaStr);
+                if (nota < 0 || nota > 5)
+                {
+                    throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                }
+                WriteLine("La nota de la evaluacion ha sido ingresada correctamente");
+                return;
+            }
+            catch (ArgumentOutOfRangeException argE)
+            {
+                Printer.WriteTitle(argE.Message);
+                WriteLine("Saliendo del programa");
+            }
+            finally
+            {
+                Printer.WriteTitle("FINALLY");
+                Printer.Beep(2500, 500, 3);
+
+            }
+            
+
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
