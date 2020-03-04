@@ -24,6 +24,7 @@ namespace CoreEscuela
             var reporteador = new Reporteador(null);
             var evalList = reporteador.GetListaEvaluaciones();
             var listaAsig = reporteador.GetListaAsignaturas();
+            var listaEvalXAsig = reporteador.GetDicEvaluaXAsig();
             /*
             //Printer.Beep(10000, cantidad:2);
             ImprimirCursosEscuela(engine.Escuela);

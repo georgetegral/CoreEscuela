@@ -27,13 +27,27 @@ namespace CoreEscuela.App
         }
         public IEnumerable<string> GetListaAsignaturas()
         {
-            var listaEvaluaciones = GetListaEvaluaciones();
+            return GetListaAsignaturas(out var dummy);
+        }
+        public IEnumerable<string> GetListaAsignaturas(out IEnumerable<Evaluacion> listaEvaluaciones)
+        {
+            listaEvaluaciones = GetListaEvaluaciones();
             return (from Evaluacion ev in listaEvaluaciones
                 select ev.Asignatura.Nombre).Distinct();
         }
         public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluaXAsig()
         {
             var dicRta = new Dictionary<string, IEnumerable<Evaluacion>>();
+            var listaAsig = GetListaAsignaturas(out var listaEval);
+            foreach (var asig in listaAsig)
+            {
+                var evalsAsig = from eval in listaEval
+                where eval.Asignatura.Nombre == asig
+                select eval;
+                dicRta.Add(asig, evalsAsig);
+            }
+            
+            return dicRta;
         }
     }
 }
