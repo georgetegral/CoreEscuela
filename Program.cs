@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using static System.Console;
@@ -19,6 +20,9 @@ namespace CoreEscuela
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.WriteTitle("¡Bienvenido a la escuela!");
+            //var reporteador = new Reporteador(engine.getDiccionarioObjetos());
+            var reporteador = new Reporteador(null);
+            /*
             //Printer.Beep(10000, cantidad:2);
             ImprimirCursosEscuela(engine.Escuela);
             var listaObjetos = engine.GetObjetosEscuela(
@@ -30,6 +34,7 @@ namespace CoreEscuela
             );
             var dicTmp = engine.getDiccionarioObjetos();
             engine.ImprimirDiccionario(dicTmp);
+            */
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
