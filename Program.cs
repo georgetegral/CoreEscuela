@@ -22,6 +22,8 @@ namespace CoreEscuela
             Printer.WriteTitle("¡Bienvenido a la escuela!");
             //var reporteador = new Reporteador(engine.getDiccionarioObjetos());
             var reporteador = new Reporteador(null);
+            var evalList = reporteador.GetListaEvaluaciones();
+            var listaAsig = reporteador.GetListaAsignaturas();
             /*
             //Printer.Beep(10000, cantidad:2);
             ImprimirCursosEscuela(engine.Escuela);
